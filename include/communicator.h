@@ -29,7 +29,6 @@ class Communicator
 {
 public:
     /**
-     * Constructor
      * @param agathaIp the ip of the Agatha server
      * @param agathaPort port of the Agatha server
      * @param authToken token assigned to the server
