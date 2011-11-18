@@ -11,7 +11,10 @@ add_definitions(${QT_DEFINITIONS})
 include_directories(${QT_INCLUDE_DIR})
 
 set(libAgatha_SRCS
+    src/communicator.cpp
     src/player.cpp
+    src/request.cpp
+    src/requestmaker.cpp
 )
 
 # final lib
