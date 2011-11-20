@@ -17,14 +17,23 @@ public:
     std::string ip;
     std::string gear;
     std::string weaponMode;
-    std::string equip;
-    std::string funstuff;
+//     std::string equip;
+//     std::string funstuff;
 };
 
 
 Player::Player()
     : d(new PlayerPrivate)
 {
+}
+
+Player::Player(const std::string &gear, const std::string &ip, const std::string &name, const std::string &weaponMode)
+    : d(new PlayerPrivate)
+{
+    d->gear = gear;
+    d->ip = ip;
+    d->name = name;
+    d->weaponMode = weaponMode;
 }
 
 Player::~Player()

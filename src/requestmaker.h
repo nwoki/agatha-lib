@@ -9,6 +9,8 @@
 #ifndef REQUEST_MAKER_H
 #define REQUEST_MAKER_H
 
+#include "qjson/include/QJson/Serializer"
+
 #include <string>
 
 #include <QtCore/QByteArray>
@@ -25,6 +27,16 @@ class Player;
 class RequestMaker
 {
 public:
+    /**
+     * @enum GameType the game for which we request Agatha's resources
+     */
+    enum GameType {
+        URT_411     /** UrbanTerror 4.1.1 */
+    };
+
+    /**
+     * @enum RequestType command request type for interaction with Agatha
+     */
     enum RequestType {
         BAN,        /** used to tell Agatha to ban a given player */
         IS_BANNED,  /** used to query Agatha if a player has been banned */
@@ -38,10 +50,10 @@ public:
      * @param type request type
      * @param player player info to add in request
      */
-    QByteArray createRequest(RequestType type, Player *player);
+    QByteArray createRequest(GameType game, RequestType type, Player *player);
 
 private:
-    /// QJson pointer to generate the json for sending
+    QJson::Serializer m_jsonSerializer;
 };
 
 };

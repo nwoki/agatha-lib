@@ -13,15 +13,25 @@ include_directories(${QT_INCLUDE_DIR})
 set(libAgatha_SRCS
     src/communicator.cpp
     src/player.cpp
+    src/playerserializerobject.cpp
     src/request.cpp
     src/requestmaker.cpp
 )
 
+set(libAgatha_MOC_HDRS
+    src/playerserializerobject.h
+)
+
+qt4_wrap_cpp(libAgatha_MOC_SRCS ${libAgatha_MOC_HDRS})
+
+# qjson
+add_subdirectory(src/qjson/src)
+
 # final lib
-add_library(Agatha STATIC ${libAgatha_SRCS})
+add_library(Agatha STATIC ${libAgatha_SRCS} ${libAgatha_MOC_SRCS})
 
 # link lib with Qt libs
-target_link_libraries(Agatha ${QT_LIBRARIES})
+target_link_libraries(Agatha ${QT_LIBRARIES} qjson)
 
 # tests
 enable_testing()
