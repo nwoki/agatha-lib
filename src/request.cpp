@@ -11,7 +11,7 @@
 
 using namespace Agatha;
 
-Request::Request(RequestMaker::RequestType type, Player *player, QObject *parent)
+Request::Request()
     : QThread(parent)
 {
 }

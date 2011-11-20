@@ -37,6 +37,7 @@ Communicator::Communicator(const std::string &agathaIp, int agathaPort, const st
     d->agathaPort = agathaPort;
     d->authToken = authToken;
 
+    /// TODO info for the socket binding will have to be given by the bot so users can set custom port
     d->udpSocket = new QUdpSocket();
     d->udpSocket->bind(QHostAddress(d->agathaIp.c_str()), d->agathaPort);
 }

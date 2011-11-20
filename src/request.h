@@ -20,7 +20,7 @@ class Player;
 class Request : public QThread
 {
 public:
-    Request(RequestMaker::RequestType type,  Player *player, QObject *parent = 0);
+    Request();
     ~Request();
 
 private:
