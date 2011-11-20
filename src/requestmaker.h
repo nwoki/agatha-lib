@@ -38,6 +38,7 @@ public:
      * @enum RequestType command request type for interaction with Agatha
      */
     enum RequestType {
+        ADD_PLAYER, /** used to tell Agatha to add a given player to the database */
         BAN,        /** used to tell Agatha to ban a given player */
         IS_BANNED,  /** used to query Agatha if a player has been banned */
     };

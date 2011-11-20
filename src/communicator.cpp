@@ -47,12 +47,15 @@ Communicator::~Communicator()
     delete d;
 }
 
+void Communicator::add(Player *player)
+{
+}
+
 void Communicator::ban(Player *player)
 {
 }
 
-bool Communicator::isBanned(Player *player)
+void Communicator::isBanned(Player *player)
 {
-    return false;
 }
 

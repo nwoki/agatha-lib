@@ -30,9 +30,11 @@ void RequestMakerTest::testCreateRequest()
     Player *player = new Player("GLAORAA", "90.54.12.78", "[LPG]KiicK-aSS", "00000111220000020002");
 
     // Results to check with
+    QByteArray addPlayerResult("{ \"command\" : \"addPlayer\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
     QByteArray banResult("{ \"command\" : \"ban\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
     QByteArray isBannedResult("{ \"command\" : \"isBanned\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
 
+    QCOMPARE(m_requestMaker->createRequest(RequestMaker::URT_411, RequestMaker::ADD_PLAYER, player), addPlayerResult);  // addPlayer
     QCOMPARE(m_requestMaker->createRequest(RequestMaker::URT_411, RequestMaker::BAN, player), banResult);               // ban
     QCOMPARE(m_requestMaker->createRequest(RequestMaker::URT_411, RequestMaker::IS_BANNED, player), isBannedResult);    // isBanned
 }

@@ -32,11 +32,11 @@ QByteArray RequestMaker::createRequest(GameType game, RequestType type, Player *
         json.insert("game", "URT_411");
     }
 
-    if (type == IS_BANNED) {
-        // TODO create ban query request
+    if (type == ADD_PLAYER) {
+        json.insert("command", "addPlayer");
+    } else if (type == IS_BANNED) {
         json.insert("command", "isBanned");
     } else if (type == BAN) {
-        // TODO create ban request
         json.insert("command", "ban");
     }
 

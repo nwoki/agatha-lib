@@ -37,6 +37,12 @@ public:
     ~Communicator();
 
     /**
+     * Tell Agatha to add given player to the database
+     * @param player player object containing player info to send to Agatha
+     */
+    void add(Player *player);
+
+    /**
      * Tell Agatha to ban given player
      * @param player player object containing player info to send to Agatha
      */
@@ -46,7 +52,7 @@ public:
      * Asks Agatha if given player is banned
      * @param player player object containing player info to send to Agatha
      */
-    bool isBanned(Player *player);
+    void isBanned(Player *player);
 
 
 private:
