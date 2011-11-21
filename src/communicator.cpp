@@ -17,9 +17,16 @@ using namespace Agatha;
 class Agatha::CommunicatorPrivate
 {
 public:
+    CommunicatorPrivate()
+        : agathaIp("default")
+        , agathaPort(12345)
+        , udpSocket(NULL)
+        {}
+
     ~CommunicatorPrivate()
     {
         delete udpSocket;
+        udpSocket = NULL;
     }
 
     std::string agathaIp;
@@ -44,7 +51,6 @@ Communicator::Communicator(const std::string &agathaIp, int agathaPort, const st
 
 Communicator::~Communicator()
 {
-    delete d->udpSocket;
     delete d;
 }
 
