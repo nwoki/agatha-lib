@@ -12,7 +12,7 @@
 using namespace Agatha;
 
 Request::Request()
-    : QThread(parent)
+    : QThread(new QObject)
 {
 }
 
