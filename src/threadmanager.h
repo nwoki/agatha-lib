@@ -9,30 +9,31 @@
 #ifndef THREADMANAGER_H
 #define THREADMANAGER_H
 
-#include <QObject>
-#include <QMutex>
-#include <QVector>
-#include "request.h"
 #include "../include/player.h"
+#include "request.h"
+
+#include <QtCore/QObject>
+#include <QtCore/QMutex>
+#include <QtCore/QVector>
 
 namespace Agatha {
 
 
-class ThreadManager : QObject {
+class ThreadManager : QObject
+{
     Q_OBJECT
 
 public:
-    ThreadManager(QObject* parent = 0);
+    ThreadManager(QObject *parent = 0);
     ~ThreadManager();
 
 public slots:
-    void threadTerminated(Request* thread = 0);
-    
-private:
-    QMutex *lock;
-    QVector<Request *> threads;  //TODO valutare se usare un array di dimensioni fisse
-};
+    void threadTerminated(Request *thread = 0);
 
+private:
+    QMutex *m_lock;
+    QVector<Request *> m_threads;  //TODO valutare se usare un array di dimensioni fisse
+};
 
 };
 

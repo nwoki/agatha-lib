@@ -6,17 +6,21 @@
  *
  */
 
-#include "threadManager.h"
+#include "threadmanager.h"
 
 using namespace Agatha;
 
-ThreadManager::ThreadManager(QObject* parent): QObject(parent)
-    , lock(new QMutex(QMutex::Recursive))
-    , threads(QVector<Request *>(20))
-{}
+ThreadManager::ThreadManager(QObject* parent)
+    : QObject(parent)
+    , m_lock(new QMutex(QMutex::Recursive))
+    , m_threads(QVector<Request *>(20))
+{
+}
 
 ThreadManager::~ThreadManager()
-{}
+{
+}
 
 void ThreadManager::threadTerminated(Request* thread)
-{}
+{
+}

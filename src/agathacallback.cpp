@@ -5,10 +5,10 @@
  * Copyright (C) 2011 Simone Daminato <skyled@alice.it>
  *
  */
-#include "../include/agathaCallback.h"
+#include "../include/agathacallback.h"
 
 namespace Agatha {
-    
+
     AgathaCallback::AgathaCallback(){};
     AgathaCallback::~AgathaCallback(){};
 };
