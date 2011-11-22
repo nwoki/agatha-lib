@@ -21,7 +21,7 @@ namespace Agatha {
     * @brief specifies the error type when talking to Agatha
     * @author Daminato Simone
     *
-    * Specifies the nature of the error that occurred whilst communicating with Agatha
+    * Specifies the nature of the error that occurred while communicating with Agatha
     */
     enum CallError {
         SERVER_TIMEOUT,    /** a timeout occurred waiting for the Agatha server to respond */
