@@ -15,16 +15,11 @@
 
 namespace Agatha {
 
-class Player;
-
 class Request : public QThread
 {
 public:
     Request();
     ~Request();
-
-private:
-
 };
 
 };

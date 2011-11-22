@@ -16,6 +16,8 @@ set(libAgatha_SRCS
     src/playerserializerobject.cpp
     src/request.cpp
     src/requestmaker.cpp
+    src/threadManager.cpp
+    src/agathaCallback.cpp
 )
 
 set(libAgatha_MOC_HDRS

@@ -8,7 +8,6 @@
 
 #include "../include/communicator.h"
 #include "../include/player.h"
-#include "requestmaker.h"
 
 #include <QtNetwork/QUdpSocket>
 
@@ -34,7 +33,6 @@ public:
     std::string authToken;
 
     QUdpSocket *udpSocket;
-    /// TODO QThreadPool for handling Request objects (inherit QThread)
 };
 
 Communicator::Communicator(const std::string &agathaIp, int agathaPort, const std::string &authToken)
