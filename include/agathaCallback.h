@@ -2,7 +2,7 @@
  * libAgatha library
  *
  * This file is part of the libAgatha library
- * Copyright (C) 2011 Francesco Nwokeka <francesco.nwokeka@gmail.com>
+ * Copyright (C) 2011 Simone Daminato <skyled@alice.it>
  *
  */
 
