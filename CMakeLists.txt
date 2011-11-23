@@ -14,9 +14,8 @@ set(libAgatha_SRCS
     src/communicator.cpp
     src/player.cpp
     src/playerserializerobject.cpp
-    src/request.cpp
+    src/responsegrabber.cpp
     src/requestmaker.cpp
-    src/threadmanager.cpp
     src/agathacallback.cpp
 )
 
