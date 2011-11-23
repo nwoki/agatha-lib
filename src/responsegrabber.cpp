@@ -43,6 +43,7 @@ void ResponseGrabber::stop()
 
 void ResponseGrabber::readData()
 {
-    QMutexLocker(m_mutex);
+    QMutexLocker locker(m_mutex);
+    
     // TODO read data from socket
 }
