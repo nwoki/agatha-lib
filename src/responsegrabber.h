@@ -2,26 +2,37 @@
  * libAgatha library
  *
  * This file is part of the libAgatha library
- * Copyright (C) 2011 Francesco Nwokeka <francesco.nwokeka@gmail.com>
+ * Copyright (C) 2011 Simone Daminato <skyled@alice.it>
  *
  */
 
-#ifndef REQUEST_H
-#define REQUEST_H
+#ifndef RESPONSEGRABBER_H
+#define RESPONSEGRABBER_H
 
+#include "requestmaker.h"
 #include "requestmaker.h"
 
 #include <QtCore/QThread>
+#include <QtCore/QMutex>
+#include <QtNetwork/QUdpSocket>
 
 namespace Agatha {
 
-class Request : public QThread
+class ResponseGrabber : public QThread
 {
+    Q_OBJECT
 public:
-    Request();
-    ~Request();
+    ResponseGrabber(QUdpSocket* socket, QMutex* mutex, QObject* parent = 0);
+    ~ResponseGrabber();
+    void stop();
+    
+public slots:
+    void readData();
+private:
+    QUdpSocket* m_socket;
+    QMutex* m_mutex;
 };
 
 };
 
-#endif  // REQUEST_H
+#endif  // RESPONSEGRABBER_H
