@@ -30,10 +30,13 @@ ResponseGrabber::~ResponseGrabber()
 
 void ResponseGrabber::stop()
 {
-    if(currentThread() != this) {
+    if(currentThread() != this)
+    {
         QMetaObject::invokeMethod(this, "stop",
                                   Qt::QueuedConnection);
-    } else {
+    }
+    else
+    {
         quit();
     }
 }

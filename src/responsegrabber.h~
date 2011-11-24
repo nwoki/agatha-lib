@@ -22,15 +22,15 @@ class ResponseGrabber : public QThread
 {
     Q_OBJECT
 public:
-    ResponseGrabber(QUdpSocket *socket, QMutex *mutex, QObject *parent = 0);
+    ResponseGrabber(QUdpSocket* socket, QMutex* mutex, QObject* parent = 0);
     ~ResponseGrabber();
     void stop();
 
 public slots:
     void readData();
 private:
-    QUdpSocket *m_socket;
-    QMutex *m_mutex;
+    QUdpSocket* m_socket;
+    QMutex* m_mutex;
 };
 
 };

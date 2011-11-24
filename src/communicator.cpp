@@ -23,17 +23,17 @@ public:
         : agathaIp("default")
         , agathaPort(12345)
         , udpSocket(NULL)
-        , m_mutex(new QMutex(QMutex::Recursive))
-        , m_grabber(NULL)
+        , mutex(new QMutex(QMutex::Recursive))
+        , grabber(NULL)
         {}
 
     ~CommunicatorPrivate()
     {
-        if (m_grabber){
-            m_grabber->stop();
-            m_grabber->wait();
+        if (grabber) {
+            grabber->stop();
+            grabber->wait();
         }
-        delete m_grabber;
+        delete grabber;
         delete udpSocket;
         udpSocket = NULL;
     }
@@ -43,8 +43,8 @@ public:
     std::string authToken;  /// TODO token diverso ad ogni richiesta.
 
     QUdpSocket *udpSocket;
-    QMutex *m_mutex;
-    ResponseGrabber *m_grabber;
+    QMutex *mutex;
+    ResponseGrabber *grabber;
 };
 
 Communicator::Communicator(const std::string &agathaIp, int agathaPort, const std::string &authToken)
@@ -60,11 +60,11 @@ Communicator::Communicator(const std::string &agathaIp, int agathaPort, const st
     /// vedi comando QUdpSocket::writeDatagram per invio dati.
     d->udpSocket = new QUdpSocket();
     d->udpSocket->bind(QHostAddress(d->agathaIp.c_str()), d->agathaPort);
-    
+
     // set and start the datagrams grabber
-    if (d->m_grabber) delete (d->m_grabber);
-    d->m_grabber = new ResponseGrabber(d->udpSocket, d->m_mutex);
-    d->m_grabber->start();
+    if (d->grabber) delete (d->grabber);
+    d->grabber = new ResponseGrabber(d->udpSocket, d->mutex);
+    d->grabber->start();
 }
 
 Communicator::~Communicator()
@@ -74,19 +74,19 @@ Communicator::~Communicator()
 
 void Communicator::add(Player *player)
 {
-    QMutexLocker locker(d->m_mutex);
+    QMutexLocker locker(d->mutex);
     /// TODO come prima, invia direttamente la richiesta attraverso il socket.
 }
 
 void Communicator::ban(Player *player)
 {
-    QMutexLocker locker(d->m_mutex);
+    QMutexLocker locker(d->mutex);
     /// TODO come prima, invia direttamente la richiesta attraverso il socket.
 }
 
 void Communicator::isBanned(Player *player)
 {
-    QMutexLocker locker(d->m_mutex);
+    QMutexLocker locker(d->mutex);
     /// TODO come prima, invia direttamente la richiesta attraverso il socket.
 }
 
