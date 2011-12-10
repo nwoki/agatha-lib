@@ -32,8 +32,10 @@ public:
      * @param agathaIp the ip of the Agatha server
      * @param agathaPort port of the Agatha server
      * @param authToken token assigned to the server
+     * @param multiThread specify if the lib should use an indipendent thread to give the answers (true), or if it has to maintain a
+     * single thread (thus waiting you to call the method *METHOD NAME*.
      */
-    Communicator(const std::string &agathaIp, int agathaPort, const std::string &authToken);
+    Communicator(const std::string &agathaIp, const int agathaPort, const std::string &authToken, const bool multiThread = false);
     ~Communicator();
 
     /**

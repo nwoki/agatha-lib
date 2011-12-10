@@ -22,6 +22,7 @@ public:
     CommunicatorPrivate()
         : agathaIp("default")
         , agathaPort(12345)
+        , multiThread(false)
         , udpSocket(NULL)
         , mutex(new QMutex(QMutex::Recursive))
         , grabber(NULL)
@@ -41,21 +42,23 @@ public:
     std::string agathaIp;
     int agathaPort;
     std::string authToken;  /// TODO token diverso ad ogni richiesta.
+    bool multiThread;
 
     QUdpSocket *udpSocket;
     QMutex *mutex;
     ResponseGrabber *grabber;
 };
 
-Communicator::Communicator(const std::string &agathaIp, int agathaPort, const std::string &authToken)
+Communicator::Communicator(const std::string &agathaIp, const int agathaPort, const std::string &authToken, const bool multiThread)
     : d(new CommunicatorPrivate)
 {
     d->agathaIp = agathaIp;
     d->agathaPort = agathaPort;
     d->authToken = authToken;
+    d->multiThread = multiThread;
 
     /// TODO info for the socket binding will have to be given by the bot so users can set custom port
-    /// TODO controllare che non sia stato già creato.
+    /// TODO valutare se fare un solitone (mooolto propenso per un si).
     /// BTW: il comando bind serve per specificare su quale interfaccia e porta aprire il socket, non a chi trasmettere.
     /// vedi comando QUdpSocket::writeDatagram per invio dati.
     d->udpSocket = new QUdpSocket();

@@ -10,7 +10,6 @@
 #define RESPONSEGRABBER_H
 
 #include "requestmaker.h"
-#include "requestmaker.h"
 
 #include <QtCore/QThread>
 #include <QtCore/QMutex>
@@ -30,7 +29,7 @@ public slots:
     void readData();
 private:
     QUdpSocket *m_socket;
-    QMutex *m_mutex;
+    QMutex *m_mutex;  //mutex of the socket.
 };
 
 };
