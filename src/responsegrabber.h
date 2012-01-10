@@ -27,6 +27,7 @@ public:
 
 public slots:
     void readData();
+
 private:
     QUdpSocket *m_socket;
     QMutex *m_mutex;  //mutex of the socket.

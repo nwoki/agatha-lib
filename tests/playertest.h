@@ -31,6 +31,7 @@ public:
 
 private slots:
     void setGear();
+    void setGuid();
     void setIp();
     void setName();
     void setWeaponMode();

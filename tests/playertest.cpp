@@ -26,6 +26,12 @@ void PlayerTest::setGear()
     QCOMPARE(m_player->gear(), std::string("GLAORWA"));
 }
 
+void PlayerTest::setGuid()
+{
+    m_player->setGuid("kajnwdoooAAISON12314d");
+    QCOMPARE(m_player->guid(), std::string("kajnwdoooAAISON12314d"));
+}
+
 void PlayerTest::setIp()
 {
     m_player->setIp("127.0.0.1");

@@ -31,8 +31,7 @@ ResponseGrabber::~ResponseGrabber()
 void ResponseGrabber::stop()
 {
     if(currentThread() != this) {
-        QMetaObject::invokeMethod(this, "stop",
-                                  Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, "stop", Qt::QueuedConnection);
     } else {
         quit();
     }
