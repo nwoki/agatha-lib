@@ -30,7 +30,7 @@ void RequestMakerTest::testCreateRequest()
     Player *player = new Player("[LPG]KiicK-aSS", "GLAORAA", "90.54.12.78", "00000111220000020002", "kajnwdoooAAISON12314d");
 
     // Results to check with
-    QByteArray addPlayerResult("{ \"command\" : \"addPlayer\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"guid\" : \"kajnwdoooAAISON12314d\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
+    QByteArray addPlayerResult("{ \"command\" : \"add\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"guid\" : \"kajnwdoooAAISON12314d\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
     QByteArray banResult("{ \"command\" : \"ban\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"guid\" : \"kajnwdoooAAISON12314d\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
     QByteArray isBannedResult("{ \"command\" : \"isBanned\", \"game\" : \"URT_411\", \"playerInfo\" : { \"gear\" : \"GLAORAA\", \"guid\" : \"kajnwdoooAAISON12314d\", \"ip\" : \"90.54.12.78\", \"name\" : \"[LPG]KiicK-aSS\", \"weaponMode\" : \"00000111220000020002\" } }");
 
