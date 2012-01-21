@@ -17,6 +17,7 @@ public:
     std::string ip;
     std::string gear;
     std::string weaponMode;
+    std::string guid;
 //     std::string equip;
 //     std::string funstuff;
 };
@@ -27,13 +28,14 @@ Player::Player()
 {
 }
 
-Player::Player(const std::string &gear, const std::string &ip, const std::string &name, const std::string &weaponMode)
+Player::Player(const std::string &name, const std::string &gear, const std::string &ip, const std::string &weaponMode, const std::string &guid)
     : d(new PlayerPrivate)
 {
     d->gear = gear;
     d->ip = ip;
     d->name = name;
     d->weaponMode = weaponMode;
+    d->guid = guid;
 }
 
 Player::~Player()
@@ -44,6 +46,11 @@ Player::~Player()
 std::string Player::gear() const
 {
     return d->gear;
+}
+
+std::string Player::guid() const
+{
+    return d->guid;
 }
 
 std::string Player::ip() const
@@ -64,6 +71,11 @@ std::string Player::weaponMode() const
 void Player::setGear(const std::string &gear)
 {
     d->gear = gear;
+}
+
+void Player::setGuid(const std::string &guid)
+{
+    d->guid = guid;
 }
 
 void Player::setIp(const std::string &ip)

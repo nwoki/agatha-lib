@@ -26,6 +26,7 @@ class PlayerSerializerObject : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString gear READ gear)
+    Q_PROPERTY(QString guid READ guid)
     Q_PROPERTY(QString ip READ ip)
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString weaponMode READ weaponMode)
@@ -34,12 +35,14 @@ public:
     PlayerSerializerObject(Player *player);
 
     QString gear() const;
+    QString guid() const;
     QString ip() const;
     QString name() const;
     QString weaponMode() const;
 
 private:
     QString m_gear;
+    QString m_guid;
     QString m_ip;
     QString m_name;
     QString m_weaponMode;

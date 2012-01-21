@@ -33,7 +33,7 @@ QByteArray RequestMaker::createRequest(GameType game, RequestType type, Player *
     }
 
     if (type == ADD_PLAYER) {
-        json.insert("command", "addPlayer");
+        json.insert("command", "add");
     } else if (type == IS_BANNED) {
         json.insert("command", "isBanned");
     } else if (type == BAN) {
