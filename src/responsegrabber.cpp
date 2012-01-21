@@ -18,14 +18,18 @@ ResponseGrabber::ResponseGrabber(QUdpSocket *socket, QMutex *mutex, QObject *par
     , m_socket(socket)
     , m_mutex(mutex)
 {
+}
+
+void ResponseGrabber::run()
+{
     moveToThread(this);
-    connect(socket, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect(m_socket, SIGNAL(readyRead()), this, SLOT(readData()));
     exec();
 }
 
 ResponseGrabber::~ResponseGrabber()
 {
-    this->quit();
+    quit();
 }
 
 void ResponseGrabber::stop()

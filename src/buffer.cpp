@@ -44,3 +44,9 @@ Response *Buffer::get()
     m_data.pop_front();
     return temp;
 }
+
+bool Buffer::containsData()
+{
+    QMutexLocker lock(m_mutex);
+    return !(m_data.empty()); 
+}

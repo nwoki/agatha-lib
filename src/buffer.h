@@ -24,13 +24,14 @@ public:
     Buffer(QObject *parent = 0);
     ~Buffer();
     void add(Response *response);
-    Response *get(); 
+    Response *get();
+    bool containsData(); // returns true if it contains some responses.
 
 signals:
     void newData();
 private:
     QMutex *m_mutex; // mutex -> access to data.
-    QVector<Response *> m_data; ///TODO cabiare tipo da void a response
+    QVector<Response *> m_data;
 };
 
 };

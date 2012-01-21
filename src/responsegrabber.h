@@ -24,6 +24,7 @@ public:
     ResponseGrabber(QUdpSocket *socket, QMutex *mutex, QObject *parent = 0);
     ~ResponseGrabber();
     void stop();
+    void run();
 
 public slots:
     void readData();

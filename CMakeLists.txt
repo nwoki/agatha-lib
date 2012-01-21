@@ -17,10 +17,14 @@ set(libAgatha_SRCS
     src/responsegrabber.cpp
     src/requestmaker.cpp
     src/agathacallback.cpp
+    src/buffer.cpp
+    src/callbacklauncher.cpp
 )
 
 set(libAgatha_MOC_HDRS
     src/playerserializerobject.h
+    src/responsegrabber.h
+    src/buffer.h
 )
 
 qt4_wrap_cpp(libAgatha_MOC_SRCS ${libAgatha_MOC_HDRS})
