@@ -22,13 +22,21 @@ namespace Agatha {
     * @author Daminato Simone
     *
     * This is an abstract class: it declares the methods that this library will call to give you the Agatha's answers.
+    * You have to create one and only one instance (you should never delete it) of the child of this class for every server that your bot will control (that is,
+    * every AgathaCallback object identifies and serve a single game server).
     */
+
+class CallbackPrivate;
 
 class AgathaCallback
 {
 public:
-    /** Default AgathaCallback constructor */
-    AgathaCallback();
+    /** 
+     * Default AgathaCallback constructor.
+     * 
+     * @param authToken token assigned to the server
+     */
+    AgathaCallback( const std::string &authToken );
 
     /** Default AgathaCallback destructor */
     virtual ~AgathaCallback();
@@ -54,6 +62,8 @@ public:
     //TODO decide a way to represent bans: it concerns the db too.
     virtual void banned(const Player *player, const std::string &ban) = 0;
 
+private:
+    CallbackPrivate *const d;
 };
 
 };

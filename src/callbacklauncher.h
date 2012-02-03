@@ -20,9 +20,10 @@ class CallbackLauncher : public QThread
 {
     Q_OBJECT
 public:
-    CallbackLauncher( Buffer *buf, AgathaCallback *callbackObject, QObject *parent = 0 );
+    CallbackLauncher( Buffer *buf, QObject *parent = 0 );
     ~CallbackLauncher();
     void run();
+    void stop();
 
 public slots:
     void takeData();
@@ -31,7 +32,6 @@ private:
     void executeCallbacks();
 
     Buffer *m_buffer;
-    AgathaCallback *m_callback;
 };
 
 };

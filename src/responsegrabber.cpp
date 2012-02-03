@@ -13,16 +13,18 @@
 
 using namespace Agatha;
 
-ResponseGrabber::ResponseGrabber(QUdpSocket *socket, QMutex *mutex, QObject *parent)
+ResponseGrabber::ResponseGrabber(QUdpSocket *socket, QMutex *mutex, Buffer *buffer, QObject *parent)
     : QThread(parent)
     , m_socket(socket)
     , m_mutex(mutex)
+    , m_buffer(buffer)
 {
 }
 
 void ResponseGrabber::run()
 {
     moveToThread(this);
+    m_buffer->moveToThread(this);
     connect(m_socket, SIGNAL(readyRead()), this, SLOT(readData()));
     exec();
 }

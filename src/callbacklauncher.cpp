@@ -11,16 +11,15 @@
 
 using namespace Agatha;
 
-CallbackLauncher::CallbackLauncher(Buffer *buf, AgathaCallback *callbackObject, QObject *parent)
+CallbackLauncher::CallbackLauncher(Buffer *buf, QObject *parent)
     : QThread(parent)
     , m_buffer(buf)
-    , m_callback(callbackObject)
 {
 }
 
 CallbackLauncher::~CallbackLauncher()
 {
-    quit();
+    if ( this->isRunning() ) quit();
 }
 
 void CallbackLauncher::run()
@@ -28,6 +27,15 @@ void CallbackLauncher::run()
     moveToThread(this);
     connect(m_buffer, SIGNAL(newData()), this, SLOT(takeData()));
     exec();
+}
+
+void CallbackLauncher::stop()
+{
+    if(currentThread() != this) {
+        QMetaObject::invokeMethod(this, "stop", Qt::QueuedConnection);
+    } else {
+        quit();
+    }
 }
 
 void CallbackLauncher::executeCallbacks()

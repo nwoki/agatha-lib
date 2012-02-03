@@ -7,8 +7,23 @@
  */
 #include "../include/agathacallback.h"
 
-namespace Agatha {
+using namespace Agatha;
 
-    AgathaCallback::AgathaCallback(){};
-    AgathaCallback::~AgathaCallback(){};
+class Agatha::CallbackPrivate {
+public:
+    CallbackPrivate( const std::string &authToken ) 
+        : token( authToken )
+        {};
+
+    std::string token;
 };
+
+AgathaCallback::AgathaCallback( const std::string &authToken )
+    : d ( new Agatha::CallbackPrivate( authToken ) )
+{
+}
+
+AgathaCallback::~AgathaCallback()
+{
+    delete d;
+}

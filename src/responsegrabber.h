@@ -10,6 +10,7 @@
 #define RESPONSEGRABBER_H
 
 #include "requestmaker.h"
+#include "buffer.h"
 
 #include <QtCore/QThread>
 #include <QtCore/QMutex>
@@ -21,7 +22,7 @@ class ResponseGrabber : public QThread
 {
     Q_OBJECT
 public:
-    ResponseGrabber(QUdpSocket *socket, QMutex *mutex, QObject *parent = 0);
+    ResponseGrabber(QUdpSocket *socket, QMutex *mutex, Buffer *buffer, QObject *parent = 0);
     ~ResponseGrabber();
     void stop();
     void run();
@@ -32,6 +33,7 @@ public slots:
 private:
     QUdpSocket *m_socket;
     QMutex *m_mutex;  //mutex of the socket.
+    Buffer *m_buffer;
 };
 
 };
