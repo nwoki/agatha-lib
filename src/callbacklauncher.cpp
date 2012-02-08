@@ -9,7 +9,7 @@
 #include "callbacklauncher.h"
 
 #include <QtCore/QString>
-#include <iostream>
+#include <QtCore/QDebug>
 
 using namespace Agatha;
 
