@@ -7,7 +7,9 @@
  */
 
 #include "callbacklauncher.h"
-#include "../include/response.h"
+
+#include <QtCore/QString>
+#include <iostream>
 
 using namespace Agatha;
 
@@ -20,6 +22,11 @@ CallbackLauncher::CallbackLauncher(Buffer *buf, QObject *parent)
 CallbackLauncher::~CallbackLauncher()
 {
     if ( this->isRunning() ) quit();
+}
+
+void CallbackLauncher::setCallbacks(const std::vector< AgathaCallback* > &callbacks)
+{
+    m_callbacks = callbacks;
 }
 
 void CallbackLauncher::run()
@@ -41,8 +48,8 @@ void CallbackLauncher::stop()
 void CallbackLauncher::executeCallbacks()
 {
     while ( m_buffer->containsData() ){
-        Response *t = m_buffer->get();
-        //TODO callback.
+        QString t = m_buffer->get();
+        qDebug() << "Data received: " << t << "\n";
     }
 }
 

@@ -13,6 +13,7 @@
 #include "buffer.h"
 
 #include <QtNetwork/QUdpSocket>
+#include <QtNetwork/QHostAddress>
 #include <QtCore/QMutex>
 #include <QtCore/QMutexLocker>
 
@@ -22,7 +23,7 @@ class Agatha::CommunicatorPrivate
 {
 public:
     CommunicatorPrivate()
-        : agathaIp("default")
+        : agathaIp(QHostAddress())
         , agathaPort(12345)
         , multiThread(false)
         , udpSocket(NULL)
@@ -52,7 +53,7 @@ public:
         }
     }
 
-    std::string agathaIp;
+    QHostAddress agathaIp;
     int agathaPort;
     bool multiThread;
 
@@ -69,7 +70,7 @@ Communicator *Communicator::instance = NULL;
 Communicator::Communicator(const int localPort, const std::string &agathaIp, const int agathaPort, const bool multiThread)
     : d(new CommunicatorPrivate)
 {
-    d->agathaIp = agathaIp;
+    d->agathaIp = QHostAddress(agathaIp.c_str());
     d->agathaPort = agathaPort;
     d->multiThread = multiThread;
 
@@ -82,13 +83,18 @@ Communicator::Communicator(const int localPort, const std::string &agathaIp, con
     d->buffer = new Buffer();
 
     // set and start the datagrams grabber
-    if ( d->grabber ) delete (d->grabber);
     d->grabber = new ResponseGrabber(d->udpSocket, d->mutex, d->buffer);
     d->grabber->start();
 
     //create the callbackLauncher
     d->callbackLauncher = new CallbackLauncher( d->buffer );
     if ( d->multiThread ) d->callbackLauncher->start();
+}
+
+Communicator::~Communicator()
+{
+    delete d;
+    instance = NULL;
 }
 
 Communicator* Communicator::createCommunicatorInstance(const int localPort, const std::string &agathaIp, const int agathaPort, const bool multiThread)
@@ -111,27 +117,41 @@ Communicator* Communicator::createCommunicatorInstance(const int localPort, cons
     return instance;
 }
 
-Communicator::~Communicator()
+Communicator* Communicator::getCommunicatorInstance()
 {
-    delete d;
-    instance = NULL;
+    return instance;
+}
+
+void Communicator::registerCallbacks(const std::vector<AgathaCallback *> &callbackObjects)
+{
+    d->callbackLauncher->setCallbacks(callbackObjects);
 }
 
 void Communicator::add(Player *player, const std::string &token)
 {
     QMutexLocker locker(d->mutex);
-    /// TODO come prima, invia direttamente la richiesta attraverso il socket.
+
+    RequestMaker t;
+    d->udpSocket->writeDatagram( t.createRequest(token, RequestMaker::URT_411, RequestMaker::ADD_PLAYER, player), d->agathaIp, d->agathaPort);
 }
 
 void Communicator::ban(Player *player, const std::string &token)
 {
     QMutexLocker locker(d->mutex);
-    /// TODO come prima, invia direttamente la richiesta attraverso il socket.
+    RequestMaker t;
+    d->udpSocket->writeDatagram( t.createRequest(token, RequestMaker::URT_411, RequestMaker::BAN, player), d->agathaIp, d->agathaPort);
 }
 
 void Communicator::isBanned(Player *player, const std::string &token)
 {
     QMutexLocker locker(d->mutex);
-    /// TODO come prima, invia direttamente la richiesta attraverso il socket.
+    RequestMaker t;
+    d->udpSocket->writeDatagram( t.createRequest(token, RequestMaker::URT_411, RequestMaker::IS_BANNED, player), d->agathaIp, d->agathaPort);
 }
 
+void Communicator::doYourJob()
+{
+    if (!d->multiThread) {
+        d->callbackLauncher->takeData();
+    }
+}

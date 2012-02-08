@@ -11,6 +11,7 @@
 #include "qjson/include/QJson/QObjectHelper"
 #include "requestmaker.h"
 
+#include <string>
 #include <QtCore/QVariant>
 
 using namespace Agatha;
@@ -23,10 +24,12 @@ RequestMaker::~RequestMaker()
 {
 }
 
-QByteArray RequestMaker::createRequest(GameType game, RequestType type, Player *player)
+QByteArray RequestMaker::createRequest(const std::string &token, GameType game, RequestType type, Player *player)
 {
     QByteArray request;
     QVariantMap json;
+
+    json.insert("token", token.c_str());
 
     if (game == URT_411) {
         json.insert("game", "URT_411");

@@ -9,21 +9,11 @@
 
 using namespace Agatha;
 
-class Agatha::CallbackPrivate {
-public:
-    CallbackPrivate( const std::string &authToken ) 
-        : token( authToken )
-        {};
-
-    std::string token;
-};
-
 AgathaCallback::AgathaCallback( const std::string &authToken )
-    : d ( new Agatha::CallbackPrivate( authToken ) )
+    : m_authToken(authToken)
 {
 }
 
 AgathaCallback::~AgathaCallback()
 {
-    delete d;
 }

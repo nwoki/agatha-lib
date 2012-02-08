@@ -13,6 +13,7 @@
 #include "../include/agathacallback.h"
 
 #include <QtCore/QThread>
+#include <vector>
 
 namespace Agatha {
 
@@ -23,15 +24,17 @@ public:
     CallbackLauncher( Buffer *buf, QObject *parent = 0 );
     ~CallbackLauncher();
     void run();
-    void stop();
+    void setCallbacks(const std::vector<AgathaCallback *> &callbacks);
 
 public slots:
     void takeData();
+    void stop();
 
 private:
     void executeCallbacks();
 
     Buffer *m_buffer;
+    std::vector<AgathaCallback *> m_callbacks;
 };
 
 };

@@ -10,6 +10,8 @@
 #include "responsegrabber.h"
 
 #include <QtCore/QMutexLocker>
+#include <QtCore/QString>
+#include <QtCore/QByteArray>
 
 using namespace Agatha;
 
@@ -46,6 +48,8 @@ void ResponseGrabber::stop()
 void ResponseGrabber::readData()
 {
     QMutexLocker locker(m_mutex);
-
-    // TODO read data from socket
+    QByteArray datagram;
+    datagram.resize(m_socket->pendingDatagramSize());
+    m_socket->readDatagram(datagram.data(),datagram.size());
+    m_buffer->add(QString(datagram.data()));
 }

@@ -16,7 +16,7 @@
 
 namespace Agatha {
 
-/**
+    /**
     * @class AgathaCallback
     * @brief class that manages the callback calls of the lib.
     * @author Daminato Simone
@@ -26,14 +26,12 @@ namespace Agatha {
     * every AgathaCallback object identifies and serve a single game server).
     */
 
-class CallbackPrivate;
-
 class AgathaCallback
 {
 public:
     /** 
      * Default AgathaCallback constructor.
-     * 
+     *
      * @param authToken token assigned to the server
      */
     AgathaCallback( const std::string &authToken );
@@ -62,8 +60,8 @@ public:
     //TODO decide a way to represent bans: it concerns the db too.
     virtual void banned(const Player *player, const std::string &ban) = 0;
 
-private:
-    CallbackPrivate *const d;
+protected:
+    std::string m_authToken;
 };
 
 };

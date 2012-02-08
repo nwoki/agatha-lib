@@ -24,11 +24,11 @@ class ResponseGrabber : public QThread
 public:
     ResponseGrabber(QUdpSocket *socket, QMutex *mutex, Buffer *buffer, QObject *parent = 0);
     ~ResponseGrabber();
-    void stop();
     void run();
 
 public slots:
     void readData();
+    void stop();
 
 private:
     QUdpSocket *m_socket;

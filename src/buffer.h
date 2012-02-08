@@ -12,8 +12,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QVector>
 #include <QtCore/QMutex>
-
-#include "../include/response.h"
+#include <QtCore/QString>
 
 namespace Agatha {
 
@@ -23,15 +22,15 @@ class Buffer : public QObject
 public:
     Buffer(QObject *parent = 0);
     ~Buffer();
-    void add(Response *response);
-    Response *get();
+    void add(QString response);
+    QString get();
     bool containsData(); // returns true if it contains some responses.
 
 signals:
     void newData();
 private:
     QMutex *m_mutex; // mutex -> access to data.
-    QVector<Response *> m_data;
+    QVector<QString> m_data;
 };
 
 };

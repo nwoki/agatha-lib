@@ -24,6 +24,9 @@ class Player;
  * @author Francesco Nwokeka
  */
 
+// take a look at this too: http://blog.vcreatelogic.com/2011/12/simple-json-parser-streamer-in-qt/
+////TODO static class.
+
 class RequestMaker
 {
 public:
@@ -51,7 +54,7 @@ public:
      * @param type request type
      * @param player player info to add in request
      */
-    QByteArray createRequest(GameType game, RequestType type, Player *player);
+    QByteArray createRequest(const std::string &token, GameType game, RequestType type, Player *player);
 
 private:
     QJson::Serializer m_jsonSerializer;

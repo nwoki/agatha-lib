@@ -59,8 +59,9 @@ public:
      * Everytime the lib recieve a response by Agatha, it will give you the answer using your callback objects.
      * Obviously, if you don't call this function at least once, you will never receive a response.
      * Every call to this method overwrites the precedent ones.
+     * @param callbackObjects list of all the callback objects.
      */
-    void registerCallbacks(std::vector<AgathaCallback *> callbackObjects);
+    void registerCallbacks(const std::vector<AgathaCallback *> &callbackObjects);
 
     /**
      * Tell Agatha to add given player to the database
@@ -83,6 +84,13 @@ public:
      */
     void isBanned(Player *player, const std::string &token);
 
+    /**
+     * If you're not using a multithread environment, use this method to give the control to the library and execute the callbacks.
+     * This will work only if you have set the "multiThread" option as false (the default), else it will do nothing.
+     * The method will return as he worked through all the answers (returns immediatly if there are no answers from Agatha.
+     */
+    ////TODO cambiare nome
+    void doYourJob();
 
 private:
     Communicator(const int localPort, const std::string &agathaIp, const int agathaPort, const bool multiThread = false);
